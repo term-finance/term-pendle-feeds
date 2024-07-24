@@ -1,0 +1,31 @@
+name: "[mainnet-deploy] deploy access control maanager"
+on:
+  workflow_dispatch:
+    inputs:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: 
+      name: mainnet
+      url: https://term-finance.github.io/term-pendle-feeds/
+    steps:
+      - uses: actions/checkout@master
+        with:
+          fetch-depth: 0
+          submodules: recursive
+      - run: corepack enable
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: yarn
+      - run: yarn install --immutable
+      - uses: foundry-rs/foundry-toolchain@v1
+      - run: yarn install
+      - run: forge install
+      - run: forge build
+      - run: forge tree
+      - run: forge script scripts/AccessControlManager.s.sol:AcccessControlManagerScript --rpc-url $RPC_URL --broadcast --verify --verbosity 4
+        env:
+          RPC_URL:  ${{ secrets.RPC_URL }}
+          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+          ETHERSCAN_API_KEY: ${{ secrets.ETHERSCAN_API_KEY }}
