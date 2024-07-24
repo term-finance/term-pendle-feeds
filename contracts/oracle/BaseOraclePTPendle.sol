@@ -31,8 +31,6 @@ abstract contract BaseOraclePTPendle {
         twapDuration = _twapDuration;
     }
 
-    modifier onlyGovernorOrGuardian() virtual;
-
     function _getQuoteAmount() internal view virtual returns (uint256) {
         (uint256 pendlePrice, uint256 index) = _pendlePTPrice(IPMarket(market()), twapDuration);
         uint256 economicalLowerBound = (_economicalPTLowerBoundPrice() * BASE_18) / index;
@@ -41,16 +39,6 @@ abstract contract BaseOraclePTPendle {
         return quote;
     }
 
-    function setMaxImpliedRate(uint256 _maxImpliedRate) external onlyGovernorOrGuardian {
-        maxImpliedRate = _maxImpliedRate;
-        emit MaxImpliedRateUpdated(_maxImpliedRate);
-    }
-
-    function setTwapDuration(uint32 _twapDuration) external onlyGovernorOrGuardian {
-        if (_twapDuration < 15 minutes) revert TwapDurationTooLow();
-        twapDuration = _twapDuration;
-        emit TwapPTDurationUpdated(_twapDuration);
-    }
 
     /*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                        INTERNAL                                                     

@@ -18,11 +18,10 @@ contract TermSusdePTPendleFeedScript is Script {
 
         // Retrieve environment variables
         address susdePriceFeed = vm.envAddress("SUSDE_PRICE_FEED");
-        address accessControlManager = vm.envAddress("ACCESS_CONTROL_MANAGER");
 
         vm.startBroadcast();
 
-        TermSusdePTPendleFeed myContract = new TermSusdePTPendleFeed(accessControlManager, 250000000000000000, 1800, susdePriceFeed);
+        TermSusdePTPendleFeed myContract = new TermSusdePTPendleFeed(250000000000000000, 1800, susdePriceFeed);
 
         console.log("TermSusdePTPendleFeed deployed to:", address(myContract));
 

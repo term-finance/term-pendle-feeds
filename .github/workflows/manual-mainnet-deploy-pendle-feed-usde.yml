@@ -2,9 +2,6 @@ name: "[mainnet-deploy] deploy pendle feeds"
 on:
   workflow_dispatch:
     inputs:
-      accessControlManager:
-        description: "access control manager address"
-        required: true
       susdePriceFeed:
         description: "susdePriceFeed"
         require: true
@@ -36,7 +33,6 @@ jobs:
           RPC_URL:  ${{ secrets.RPC_URL }}
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
           ETHERSCAN_API_KEY: ${{ secrets.ETHERSCAN_API_KEY }}
-          ACCESS_CONTROL_MANAGER: ${{ github.event.inputs.accessControlManager  }}
           SUSDE_PRICE_FEED: ${{ github.event.inputs.susdePriceFeed }}
           
 

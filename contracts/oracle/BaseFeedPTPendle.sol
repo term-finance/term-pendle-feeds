@@ -43,21 +43,15 @@ import "./BaseOraclePTPendle.sol";
 /// @title BaseFeedPtPendle
 /// @author Angle Labs, Inc.
 /// @notice Base Contract to implement the AggregatorV3Interface for Pendle PT tokens
-abstract contract BaseFeedPTPendle is AccessControl, AggregatorV3Interface, BaseOraclePTPendle {
+abstract contract BaseFeedPTPendle is AggregatorV3Interface, BaseOraclePTPendle {
     // =================================== Errors ===================================
 
     /// @notice Constructor for an oracle following AggregatorV3Interface
-    /// @param accessControlManager Contract managing authorization
     constructor(
-        IAccessControlManager accessControlManager,
         uint256 _maxImpliedRate,
         uint32 _twapDuration
-    ) AccessControl(accessControlManager) BaseOraclePTPendle(_maxImpliedRate, _twapDuration) {}
+    ) BaseOraclePTPendle(_maxImpliedRate, _twapDuration) {}
 
-    modifier onlyGovernorOrGuardian() override(AccessControl, BaseOraclePTPendle) {
-        if (!accessControlManager.isGovernorOrGuardian(msg.sender)) revert NotGovernorOrGuardian();
-        _;
-    }
 
     /*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                  AGGREGATORV3INTERFACE                                              

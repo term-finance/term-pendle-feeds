@@ -13,7 +13,7 @@ contract TermSusdePTPendleFeed is BaseFeedPTPendle {
         uint256 _maxImpliedRate,
         uint32 _twapDuration,
         address susdePriceFeed_
-    ) BaseFeedPTPendle(accessControlManager, _maxImpliedRate, _twapDuration) {
+    ) BaseFeedPTPendle(_maxImpliedRate, _twapDuration) {
         susdePriceFeed = AggregatorV3Interface(susdePriceFeed_);
     }
 
