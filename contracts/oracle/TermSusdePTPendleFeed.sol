@@ -43,7 +43,7 @@ contract TermSusdePTPendleFeed is BaseFeedPTPendle {
     {
         
         (, int256 answer, , uint256 updatedAt, ) = usdePriceFeed.getRoundData(_roundId);
-        int256 usdPrice = int256(_getQuoteAmount()) * answer / 10 ** 18;
+        int256 usdPrice = int256(_getQuoteAmount()) * answer * 10 ** 10  / 10 ** 18;
         
         return (0, usdPrice , 0, updatedAt, 0);
     }
@@ -56,7 +56,7 @@ contract TermSusdePTPendleFeed is BaseFeedPTPendle {
         returns (uint80 roundId, int256 answer, uint256 startedAt, uint256 updatedAt, uint80 answeredInRound)
     {
         (, int256 answer, , uint256 updatedAt, ) = usdePriceFeed.latestRoundData();
-        int256 usdPrice = int256(_getQuoteAmount()) * answer / 10 ** 18;
+        int256 usdPrice = int256(_getQuoteAmount()) * answer * 10 ** 10 / 10 ** 18;
         
 
         return (0, usdPrice, 0, updatedAt, 0);
