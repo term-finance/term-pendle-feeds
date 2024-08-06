@@ -22,6 +22,10 @@ jobs:
         with:
           node-version: "20"
           cache: yarn
+      - name: Setup repo
+        uses: ./.github/actions/setup-repo
+        with:
+          registry-token: ${{ secrets.GH_REGISTRY_ACCESS_TOKEN }}
       - run: yarn install --immutable
       - uses: foundry-rs/foundry-toolchain@v1
       - run: yarn install
