@@ -7,14 +7,13 @@ import "./BaseFeedPTPendle.sol"; // Import the BaseFeedPTPendle contract
 contract TermSusdePTPendleFeed is BaseFeedPTPendle {
     string public constant description = "PT-weETH/ETH Oracle";
 
-    AggregatorV3Interface public susdePriceFeed;
+    AggregatorV3Interface public usdePriceFeed;
     constructor(
-        IAccessControlManager accessControlManager,
         uint256 _maxImpliedRate,
         uint32 _twapDuration,
-        address susdePriceFeed_
+        address usdePriceFeed_
     ) BaseFeedPTPendle(_maxImpliedRate, _twapDuration) {
-        susdePriceFeed = AggregatorV3Interface(susdePriceFeed_);
+        usdePriceFeed = AggregatorV3Interface(usdePriceFeed_);
     }
 
     function asset() public pure override returns (address) {
@@ -43,7 +42,11 @@ contract TermSusdePTPendleFeed is BaseFeedPTPendle {
         returns (uint80 roundId, int256 answer, uint256 startedAt, uint256 updatedAt, uint80 answeredInRound)
     {
         
+<<<<<<< Updated upstream
         (, int256 answer, , uint256 updatedAt, ) = susdePriceFeed.getRoundData(_roundId);
+=======
+        (, int256 answer, , uint256 updatedAt, ) = usdePriceFeed.getRoundData(_roundId);
+>>>>>>> Stashed changes
         int256 usdPrice = int256(_getQuoteAmount()) * answer / 10 ** 18;
         
         return (0, usdPrice , 0, updatedAt, 0);
@@ -56,7 +59,11 @@ contract TermSusdePTPendleFeed is BaseFeedPTPendle {
         override
         returns (uint80 roundId, int256 answer, uint256 startedAt, uint256 updatedAt, uint80 answeredInRound)
     {
+<<<<<<< Updated upstream
         (, int256 answer, , uint256 updatedAt, ) = susdePriceFeed.latestRoundData();
+=======
+        (, int256 answer, , uint256 updatedAt, ) = usdePriceFeed.latestRoundData();
+>>>>>>> Stashed changes
         int256 usdPrice = int256(_getQuoteAmount()) * answer / 10 ** 18;
         
 
