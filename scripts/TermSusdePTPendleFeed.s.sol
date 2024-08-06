@@ -19,7 +19,7 @@ contract TermSusdePTPendleFeedScript is Script {
         // Retrieve environment variables
         address usdePriceFeed = vm.envAddress("USDE_PRICE_FEED");
 
-        TermSusdePTPendleFeed myContract = new TermSusdePTPendleFeed(250000000000000000, 1800, usdePriceFeed);
+        TermSusdePTPendleFeed myContract = new TermSusdePTPendleFeed(500000000000000000, 1800, usdePriceFeed);
 
         console.log("TermSusdePTPendleFeed deployed to:", address(myContract));
 
