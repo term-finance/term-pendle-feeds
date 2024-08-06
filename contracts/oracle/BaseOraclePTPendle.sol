@@ -34,7 +34,7 @@ abstract contract BaseOraclePTPendle {
     function _getQuoteAmount() internal view virtual returns (uint256) {
         (uint256 pendlePrice, uint256 index) = _pendlePTPrice(IPMarket(market()), twapDuration);
         uint256 economicalLowerBound = (_economicalPTLowerBoundPrice() * BASE_18) / index;
-        uint256 minPrice = economicalLowerBound > pendlePrice ? pendlePrice : economicalLowerBound;
+        uint256 minPrice = economicalLowerBound < pendlePrice ? pendlePrice : economicalLowerBound;
         uint256 quote = (_detectHackRatio() * minPrice) / BASE_18;
         return quote;
     }
