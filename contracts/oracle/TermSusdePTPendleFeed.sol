@@ -42,11 +42,7 @@ contract TermSusdePTPendleFeed is BaseFeedPTPendle {
         returns (uint80 roundId, int256 answer, uint256 startedAt, uint256 updatedAt, uint80 answeredInRound)
     {
         
-<<<<<<< Updated upstream
-        (, int256 answer, , uint256 updatedAt, ) = susdePriceFeed.getRoundData(_roundId);
-=======
         (, int256 answer, , uint256 updatedAt, ) = usdePriceFeed.getRoundData(_roundId);
->>>>>>> Stashed changes
         int256 usdPrice = int256(_getQuoteAmount()) * answer / 10 ** 18;
         
         return (0, usdPrice , 0, updatedAt, 0);
@@ -59,11 +55,7 @@ contract TermSusdePTPendleFeed is BaseFeedPTPendle {
         override
         returns (uint80 roundId, int256 answer, uint256 startedAt, uint256 updatedAt, uint80 answeredInRound)
     {
-<<<<<<< Updated upstream
-        (, int256 answer, , uint256 updatedAt, ) = susdePriceFeed.latestRoundData();
-=======
         (, int256 answer, , uint256 updatedAt, ) = usdePriceFeed.latestRoundData();
->>>>>>> Stashed changes
         int256 usdPrice = int256(_getQuoteAmount()) * answer / 10 ** 18;
         
 
