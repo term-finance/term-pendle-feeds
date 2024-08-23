@@ -21,11 +21,11 @@ contract TermSusdePTPendleFeed is BaseFeedPTPendle {
     }
 
     function sy() public pure override returns (address) {
-        return 0x4139cDC6345aFFbaC0692b43bed4D059Df3e6d65 ;
+        return 0x1605A410c8480A18A3e958fAFF3b6D2834fbae22 ;
     }
 
     function maturity() public pure override returns (uint256) {
-        return 1727308800;
+        return 1729728000;
     }
 
     function market() public pure override returns (address) {
